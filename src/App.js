@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react'
+import Header from './Component/Header'
+import Content from './Component/Content'
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      'bilanganKedua' : 0,
+      'bilanganPertama': 0
+    }
+    this.setBilanganPertama = this.setBilanganPertama.bind(this)
+    this.setBilanganKedua = this.setBilanganKedua.bind(this)
+    this.sayVariable = this.sayVariable.bind(this)
+  }
+  setBilanganPertama(inputBilanganPertama){
+      this.setState(
+        {
+          'bilanganPertama' : inputBilanganPertama.target.value
+        }
+      )
+    }
+  setBilanganKedua(inputBilanganKedua){
+    this.setState(
+      {
+        bilanganKedua : inputBilanganKedua.target.value
+      }
+    )
+  }
+  sayVariable(){
+    let hasil = Number(this.state.bilanganPertama) + Number(this.state.bilanganKedua)
+    alert(hasil)
+  }
+  render(){
+    return(
+      <div className='App'>
+        <Header/>
+        <Content bilanganPertama = {this.state.bilanganPertama} bilanganKedua = {this.state.bilanganKedua} setBilanganPertama = {this.setBilanganPertama} setBilanganKedua={this.setBilanganKedua} sayVariable = {this.sayVariable}/>
+      </div>
+    )
+  }
 }
-
-export default App;
+export default App
